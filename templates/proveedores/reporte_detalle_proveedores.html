@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <style >
+        @page {
+            size: landscape;
+            @frame header_frame{
+                -pdf-frame-content: headerContent;
+                left: 5pt;
+                top: 10pt;
+                height: 100pt;
+                }
+
+            @frame content_frame {
+                    left: 40pt; width: 760pt; top: 90pt; height: 460pt;
+            }
+
+            @frame footer {
+                -pdf-frame-content: footerContent;
+                bottom: 1cm;
+                margin-left: 1cm;
+                margin-right: 1cm;
+                height: 0cm;
+                }
+        }
+    </style>
+</head>
+<body>
+
+<div id="headerContent">
+    </br><center> <h2>REPORTE DE PROVEEDORES</h2></center>
+    <center> <h3>USMOTOS</h3></center>
+</div>
+
+<div id="footerContent">
+    Página: <pdf:pagenumber> de <pdf:pagecount>
+</div>
+
+<br>
+<table style="border:2px solid black;border-collapse:collapse;">
+    <tr>
+        <th style="border:2px solid black; padding: 2px;">Nro</th>
+        <th style="border:2px solid black; padding: 2px;">Nombre</th>
+        <th style="border:2px solid black; padding: 2px;">Direccion</th>
+        <th style="border:2px solid black; padding: 2px;">Telefono</th>        
+        <th style="border:2px solid black; padding: 2px;">Ciudad</th>
+        <th style="border:2px solid black; padding: 2px;">Email</th>
+        <th style="border:2px solid black; padding: 2px;">Habilitado</th>  
+
+
+    </tr>
+     {% for proveedor in proveedores %}
+            
+        <tr>
+        <td width= 40 style="border:2px solid black; padding: 3px;">{{ forloop.counter }}</td>
+         <td width= 80 style="border:2px solid black; padding: 3px;"><center>{{ proveedor.nombre }}</center></td>
+         <td width= 220 style="border:2px solid black; padding: 3px;"><center>{{ proveedor.direccion }} </center></td>
+         <td width=80 style="border:2px solid black; padding: 3px;"><center>{{ proveedor.telefono }}</center></td>
+         <td width= 80 style="border:2px solid black; padding: 3px;"><center>{{ proveedor.ciudad }}</center></td>
+         <td width= 140 style="border:2px solid black; padding: 3px;"><center>{{ proveedor.email }}</center></td>
+         {% if proveedor.habilitado == True %}
+         	<td width= 50 style="border:2px solid black; padding: 3px;"><center>Si</center></td>
+         {% else %}
+         	<td width= 50 style="border:2px solid black; padding: 3px;"><center>No</center></td>
+         {% endif %}
+        </tr>         
+              
+    {% endfor %} 
+    <td colspan="6" width= 70 style="border:2px solid black; padding: 3px;"><center>REPORTE EMPLEADOS USMOTOS</center></td>
+  
+
+</table>
+
+<br />
+
+</body>
+</html>
+

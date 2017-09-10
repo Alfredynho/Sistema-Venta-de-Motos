@@ -1,0 +1,85 @@
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <div class="wrapper">
+        <header class="main-header">
+          <!-- Logo -->
+          <a href="#" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>U</b>SM</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>USMOTOS</b></span>
+          </a>
+          <!-- Header Navbar: style can be found in header.less -->
+          <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+              <span class="sr-only">Toggle navigation</span>
+            </a>
+            <div class="navbar-custom-menu">
+              <ul class="nav navbar-nav">           
+              
+                <!-- User Account: style can be found in dropdown.less -->
+                 <li class="dropdown user user-menu">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="{{ user.empleado.imagen.url }}" class="img-circle" alt="User Image" height="20" width="20" > 
+                    <span class="hidden-xs">{{ user.first_name|capfirst }} {{ user.last_name|capfirst }}</span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <!-- User image -->
+                    <li class="user-header">
+                      <img src="{{ user.empleado.imagen.url }}" class="img-circle" alt="User Image" > 
+                       <p>
+                         {{ user.first_name|capfirst }} {{ user.last_name|capfirst }}
+                    
+                      </p>
+                    </li>
+    
+                    <!-- Menu Footer-->
+                    <li class="user-footer">
+                      <div class="pull-left">
+                        <!--<a href="#" class="btn btn-default btn-flat">Profile</a>-->
+                      </div>
+                      <div class="pull-right">
+                        <a href="#" class="btn btn-default btn-flat">Salir</a>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <!-- Control Sidebar Toggle Button -->
+                <!--<li>
+                  <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                </li>-->
+              </ul>
+            </div>
+          </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+          <!-- sidebar: style can be found in sidebar.less -->
+          <section class="sidebar">
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+              <div class="pull-left image">
+              <img src="{{ user.empleado.imagen.url }}" class="img-circle" alt="User Image" > 
+              </div>
+              <div class="pull-left info">
+                <p>{{ user.first_name|capfirst }} {{ user.last_name|capfirst }}</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> {{ user.username | capfirst }}</a>
+              </div>
+            </div>
+
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu">
+              <li class="header"><center>{{ user.empleado.tipo |upper }}</center></li>
+            
+            {% if user.empleado.tipo == "Gerente" %}
+                {% include "nav_empleados/gerente.html" %}
+            {% elif user.empleado.tipo == "Vendedor" %}
+                {% include "nav_empleados/vendedor.html" %}
+            {% elif user.empleado.tipo == "Mecanico" %}
+                {% include "nav_empleados/mecanico.html" %}
+            {% endif %}
+
+          </section>
+          <!-- /.sidebar -->
+        </aside>

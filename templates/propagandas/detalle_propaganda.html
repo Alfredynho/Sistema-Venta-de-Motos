@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Propaganda{% endblock title %}
+{% block content %}
+<div class="wrapper"> 
+      <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+        <!-- Main content -->
+    <section class="content">          
+      <!-- START ALERTS AND CALLOUTS -->     
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box box-info">
+          
+            <div class="box-header with-border">
+          		<a href="{% url 'propagandas:lista_propagandas' %}" class="btn btn-success">
+            		<span class="glyphicon glyphicon-chevron-left"></span> Regresar
+                </a>              
+              		<div class="box-tools pull-right">
+                      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    </div><!-- /.box-tools -->            
+            </div><!-- /.box-header -->
+              <div class="box-body">
+                  <table class="table table-striped table table-hover ">
+                        <thead>
+                            <tr>
+                             <th><h2> Propaganda: {{ object.nombre | capfirst }}</h2></th>           
+                           </tr>
+                        </thead>              
+	                    <tbody> 
+	                          <tr class="success"> 
+	                          	  <td><strong>Nro:</strong></td>                           
+	                              <td>{{ object.id }}</td>
+	                          </tr>
+	                          <tr class="success">
+	                          	  <td><strong>Nombre:</strong></td>
+	                              <td>{{ object.nombre }} </td> 
+	                           </tr>
+	                           <tr class="success">
+	                           	  <td><strong>Descripcion:</strong></td>
+	                              <td>{{ object.descripcion }}</td>                              
+	                           </tr>
+	                           	<tr class="success">
+	                           	  <td><strong>Url:</strong></td>
+	                              <td>{{ object.url }}</td>                              
+	                           </tr> 
+	                           <tr class="success">
+	                           	  <td><strong>Habilitado:</strong> </td>
+	                           	  {% if object.habilitado == True %}
+	                              	<td>Si</td>                  
+	                              {% else %}
+	                              	<td>No</td>                  
+	                              {% endif %}
+	                           </tr> 
+	                    </tbody>
+	               	</table>                                 
+              </div><!-- /.box -->
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+    </section><!-- /.content -->
+  </div><!-- /.content-wrapper -->
+
+{% endblock content %}
+
+

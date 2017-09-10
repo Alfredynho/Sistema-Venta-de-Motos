@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% block title %}Productos{% endblock title %}
+{% load i18n static %}
+
+{% block css %}
+<!-- DataTables -->
+<link rel="stylesheet" href="/static/plugins/datatables/dataTables.bootstrap.css">
+{% endblock css %}
+
+{% block content %}
+    <div class="wrapper"> 
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>            
+            Productos
+          </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <div class="col-xs-12">
+
+                <div class="box box-primary">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">
+                      <a href="{% url 'productos:crear_productos' %}" class="btn btn-success">
+                      Nuevo
+                      </a>
+                    </h3>
+                    {% if user.empleado.tipo == "Gerente" %}
+                      <a  class="btn btn-primary pull-right" href="/productos/reporte">imprimir</a>
+                    {% endif %}
+                    <div class="box-tools pull-right">
+                      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    </div><!-- /.box-tools -->
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                             <th>N°</th>                                                     
+                              <th>Numero Serie</th> 
+                              <th>Tipo</th>                              
+                              <th>Marca</th> 
+                              <th>Precio Venta</th> 
+                              <th>Nombre</th>
+                              <th>Imagen</th>
+                              <th>Habilitado</th>
+                              <th><center>Acciones</center></th>
+                           </tr>
+                        </thead>
+                      <tbody> 
+                      {% for producto in productos %}          
+
+                          <tr> 
+                              <td>{{ forloop.counter}}</td>                             
+                              <td>{{ producto.numero_serie }} </td> 
+                              <td>{{ producto.tipo }}</td>                              
+                              <td>{{ producto.marca }}</td>
+                              <td>{{ producto.precio_venta }}</td>
+                              <td><b style="color:blue;">{{ producto.nombre| capfirst }}</b></td>   
+
+                              {% if producto.imagen %}
+                                  <td><img src={{ producto.imagen.url }} width=50 height=50 class="img-circle" /></td>
+                              {% else %}
+                                  <td><img src="{% static 'img/bot.png' %}" width=50 height=50 class="img-circle" /></td>
+                              {% endif %}
+
+                              {% if producto.habilitado == True %}
+                                  <td>Si</td>
+                              {% else %}
+                                  <td>No</td>
+                              {% endif %}
+                              
+                              <td class="text-right">
+                                  <center>
+                                  <a href="{% url 'productos:detalle_productos'  producto.id %}" class="btn btn-success"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                  <a href="{% url 'productos:actualizar_productos' producto.id %}" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    {% if user.empleado.tipo == 'Gerente' %}
+                                        <a href="{% url 'productos:eliminar_productos' producto.id %}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a> </center>
+                                    {% endif %}
+                              </td>
+                          </tr>
+                      {% endfor %}
+                          
+                          </tbody>
+                </table>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+      <footer class="main-footer">
+{% endblock content %}
+
+{% block extrajs %}
+<!-- DataTables -->
+<script src="/static/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/static/plugins/datatables/dataTables.bootstrap.min.js"></script>
+
+<!-- SlimScroll -->
+<script src="/static/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="/static/plugins/fastclick/fastclick.min.js"></script>
+
+    <script>
+      $(function () {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false
+        });
+      });
+       </script>
+
+       
+{% endblock extrajs %}

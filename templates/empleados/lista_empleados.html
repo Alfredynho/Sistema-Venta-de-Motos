@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block title %}Empleados{% endblock title %}
+
+{% block css %}
+<!-- DataTables -->
+<link rel="stylesheet" href="/static/plugins/datatables/dataTables.bootstrap.css">
+{% endblock css %}
+
+{% block content %}
+    <div class="wrapper"> 
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>            
+            Empleados
+          </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <div class="col-xs-12">
+
+                <div class="box box-primary">
+                  <div class="box-header with-border">
+                    <h3 class="box-title"><a href="{% url 'empleados:crear_empleado' %}" class="btn btn-success">
+                      Nuevo Empleado
+                    </a></h3>
+                      {% if user.empleado.tipo == "Gerente" %}
+                        <a  class="btn btn-primary pull-right" href="/empleados/reporte">imprimir</a>
+                      {% endif %}
+                    <div class="box-tools pull-right">
+                      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    </div><!-- /.box-tools -->
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+                  <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                     <tr>
+                        <th>N°</th>
+                        <th>Username</th>                       
+                        <th>Nombre</th> 
+                        <th>Cedula</th>                              
+                        <th>Cargo</th>
+                        <th>Acciones</th>                       
+                      </tr>
+                    </thead>
+                    <tbody>
+                    
+                     {% for empleado in lista_empleados %}          
+
+                        <tr> 
+                          <td>{{ forloop.counter}}</td>
+                          <td>{{ empleado.empleado | capfirst }}</td>
+                          <td>{{ user.first_name | capfirst }} {{ user.last_name | capfirst}}</td> 
+                          <td>{{ empleado.cedula }}</td>                              
+                          <td>{{ empleado.tipo | capfirst }}</td>
+                          <td class="text-right">
+                                  <center><a href="{% url 'empleados:detalle_empleado' empleado.id %} " class="btn btn-success"><span class="glyphicon glyphicon-eye-open"></span></a>
+
+                                  <a href="{% url 'empleados:actualizar_empleado' empleado.id  %}" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>
+                                     {% if user.empleado.tipo == 'Gerente' %}
+                                  <a href="{% url 'empleados:eliminar_empleado' empleado.id %}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></center></a> 
+                                   {% endif %}
+                            </td>                      
+                              
+                          </tr>
+                      {% endfor %}
+                    </tbody>
+
+                  </table>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+      <footer class="main-footer">
+{% endblock content %}
+
+{% block extrajs %}
+<!-- DataTables -->
+<script src="/static/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/static/plugins/datatables/dataTables.bootstrap.min.js"></script>
+
+<!-- SlimScroll -->
+<script src="/static/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="/static/plugins/fastclick/fastclick.min.js"></script>
+
+    <script>
+      $(function () {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false
+        });
+      });
+       </script>
+
+       
+{% endblock extrajs %}

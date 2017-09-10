@@ -1,0 +1,2 @@
+# instalando QRcode para codigos QR facturacion
+pip install qrcode

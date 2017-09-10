@@ -1,0 +1,97 @@
+ {% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %} Factura {% endblock %}
+{% block content %}
+            <!-- begin invoice -->
+            
+            <div class="invoice">
+                    <img src="{{ MEDIA_URL }}imagenes/logo/logo.png" class="img-circle" align="left"> 
+                <div class="invoice-company">
+                    <span class="pull-right hidden-print">
+                          <a href="javascript:;" onclick="window.history.back()" class="btn btn-sm btn-success m-b-10"><i class="fa fa-arrow-circle-left"></i> Volver</a>
+                    <a href="javascript:;" onclick="window.print()" class="btn btn-sm btn-success m-b-10"><i class="fa fa-print m-r-5"></i> Print</a>
+                 </span> 
+                    <div ALIGN=center> <strong>FACTURA DE COMPRAssss</strong> </div>
+                    
+                </div>
+                <div class="invoice-header">
+                    <div class="invoice-from">
+                        <address class="m-t-5 m-b-5">
+                            <strong>{{ user.empleado.sucursal.nombre }}, Inc.</strong><br />
+                            {{ user.empleado.sucursal.direccion }}<br />
+                            {{ user.empleado }}<br />
+                            Telefono: (032) {{ user.empleado.sucursal.telefono }}<br />
+                        </address>
+                    </div>
+                    <div class="invoice-to">
+                        <small></small>
+                        <address class="m-t-5 m-b-5">
+                            <strong>{{ venta.cliente.nombre }} {{ venta.cliente.apellido }}</strong><br />
+                            Direccion<br />
+                            {{ venta.cliente.ciudad }}, {{ venta.cliente.departamento }}<br />
+                            Telefono: (032) {{ venta.cliente.telefono }}<br />
+                            Celular: {{ venta.cliente.celular }}
+                        </address>                     
+                    
+                    </div>
+                    <div class="invoice-date">
+                        Fecha De Emisión:
+                        <div class="date m-t-5">{% now 'SHORT_DATE_FORMAT' %}</div>
+                        <div class="invoice-detail">
+                            #Factura: {{ venta.id }}
+                        </div>
+                    </div>
+                </div>
+                <div class="invoice-content">
+                    <div class="table-responsive">
+                        <table class="table table-invoice">
+                            <thead>
+                                <tr>
+                                    <th>DESCRIPCIÓN DE COMPRA</th>
+                                    <th>CANTIDAD</th>
+                                    <th>PRECIO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        
+                                        <small> {{ venta.sucursal_vehiculo }}</small>
+                                    </td>
+                                    <td>1</td>
+                                    <td>${{ venta.precio_venta}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="invoice-price">
+                        <div class="invoice-price-left">
+                            <div class="invoice-price-row">
+                                <div class="sub-price">
+                                    <small>SUBTOTAL</small>
+                                   {{ venta.precio_venta}}
+                                </div>
+                              
+                               
+                            </div>
+                        </div>
+                        <div class="invoice-price-right">
+                            <small>TOTAL</small> {{ venta.precio_venta}}
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="invoice-footer text-muted">
+                    <p class="text-center m-b-5">
+                       Sistema de Venta de Motocicletas USMOTOS
+                    </p>
+                    <p class="text-center">
+                        <span class="m-r-10"><i class="fa fa-globe"></i> www.usmotos.com</span>
+                        <span class="m-r-10"><i class="fa fa-phone"></i> T:(032){{ user.empleado. }}</span>
+                        <span class="m-r-10"><i class="fa fa-envelope"></i> {{ user.email }}</span>
+                    </p>
+                </div>
+            </div>
+            <!-- end invoice -->
+{% endblock %}

@@ -1,0 +1,22 @@
+{
+  "name": "arcbot",
+  "version": "1.0.0",
+  "description": "Backend bots",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/alfredynho/ARCBOT.git"
+  },
+  "author": "Alfredo Callizaya @alfredynho",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/alfredynho/ARCBOT/issues"
+  },
+  "homepage": "https://gitlab.com/alfredynho/ARCBOT#README",
+  "dependencies": {
+    "push.js": "^1.0.4"
+  }
+}

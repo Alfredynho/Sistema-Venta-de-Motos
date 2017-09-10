@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% block title %}Productos{% endblock title %}
+
+{% block content %}
+<div class="wrapper"> 
+      <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+         <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>            
+            Agregar Producto
+          </h1>
+        </section>
+        <!-- Main content -->
+    <section class="content">          
+      <!-- START ALERTS AND CALLOUTS -->     
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box box-info">
+            <div class="box-header with-border">            
+            <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            </div><!-- /.box-tools -->
+                       
+            </div><!-- /.box-header -->
+
+              <div class="box-body">     
+                    <div class="row" id ="contenido">
+                      <div class="col-lg-12">
+                      <form id="form" class="form-horizontal" autocomplete="off" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">  
+                                <div class="form-group has-success has-feedback  {% if form.numero_serie.errors %} has-error {% endif %}">
+                                     <label class="control-label col-sm-3" for="inputSuccess3">{{ form.numero_serie.label_tag }}
+                                     </label>
+                                     <div class="col-sm-4">
+                                        {{ form.numero_serie }}
+                                    </div>
+                                 </div>
+
+                                 <div class="form-group has-success has-feedback  {% if form.tipo.errors %} has-error {% endif %}">
+                                     <label class="control-label col-sm-3" for="inputSuccess3">{{ form.tipo.label_tag }}
+                                     </label>
+                                     <div class="col-sm-6">
+                                        {{ form.tipo }}
+                                    </div>
+                                 </div>
+
+                                <div class="form-group has-success has-feedback  {% if form.nombre.errors %} has-error {% endif %}">
+                                     <label class="control-label col-sm-3" for="inputSuccess3">{{ form.nombre.label_tag }}
+                                     </label>
+                                     <div class="col-sm-4">
+                                        {{ form.nombre }}
+                                    </div>
+                                 </div>
+
+                                <div class="form-group has-success has-feedback  {% if form.color.errors %} has-error {% endif %}">
+                                     <label class="control-label col-sm-3" for="inputSuccess3">{{ form.color.label_tag }}
+                                     </label>
+                                     <div class="col-sm-4">
+                                        {{ form.color }}
+                                    </div>
+                                 </div>
+
+                                <div class="form-group has-success has-feedback  {% if form.cantidad.errors %} has-error {% endif %}">
+                                     <label class="control-label col-sm-3" for="inputSuccess3">{{ form.cantidad.label_tag }}
+                                     </label>
+                                     <div class="col-sm-4">
+                                        {{ form.cantidad }}
+                                    </div>
+                                 </div>
+
+
+                                 <div class="form-group has-success has-feedback  {% if form.caracteristicas.errors %} has-error {% endif %}">
+                                     <label class="control-label col-sm-3" for="inputSuccess3">{{ form.caracteristicas.label_tag }}
+                                     </label>
+                                     <div class="col-sm-6">
+                                        {{ form.caracteristicas }}
+                                    </div>
+                                 </div>
+
+                                 <div class="form-group has-success has-feedback  {% if form.proveedor.errors %} has-error {% endif %}">
+                                     <label class="control-label col-sm-3" for="inputSuccess3">{{ form.proveedor.label_tag }}
+                                     </label>
+                                     <div class="col-sm-6">
+                                        {{ form.proveedor }}
+                                    </div>
+                                 </div>
+
+                                <div class="form-group has-success has-feedback {% if form.image.errors %}has-error{% endif%}">
+                                    <label class="col-md-2 control-label">Imagen</label>
+                                    <div class="col-md-10">
+                                        <input type="file" class="form-control" id="id_imagen"
+                                               name="imagen" value="{% if form.imagen.value %}{{ form.imagen.value }}{% endif %}">
+                                    </div>
+                                    {% if form.imagen.errors %}
+                                        <span class="help-block">
+                                            {% for error in form.imagen.errors %}
+                                                <span>{{ error|escape }}</span>
+                                            {% endfor %}
+                                        </span>
+                                    {% endif %}
+                                </div>
+                        </div>                             
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">  
+                                 
+                                <div class="form-group has-success has-feedback  {% if form.descripcion.errors %} has-error {% endif %}">
+                                    <label class="control-label col-sm-3" for="inputSuccess3">{{ form.descripcion.label_tag }}</label>
+                                    <div class="col-sm-7">
+                                        <div class="form-group">
+                                         {{ form.descripcion }}
+                                        </div>                                       
+                                    </div>
+                                </div> 
+
+                                <div class="form-group has-success has-feedback  {% if form.precio_compra.errors %} has-error {% endif %}">
+                                    <label class="control-label col-sm-3" for="inputSuccess3">{{ form.precio_compra.label_tag }}</label>
+                                    <div class="col-sm-6">  
+                                        {{ form.precio_compra}}              
+                                    </div>
+                                </div>  
+                                <div class="form-group has-success has-feedback  {% if form.precio_venta.errors %} has-error {% endif %}">
+                                    <label class="control-label col-sm-3" for="inputSuccess3">{{ form.precio_venta.label_tag }}</label>
+                                    <div class="col-sm-6">  
+                                         {{ form.precio_venta}}              
+                                    </div>
+                                </div>
+                                
+                               <div class="form-group has-success has-feedback  {% if form.habilitado.errors %} has-error {% endif %}">
+                                    <label class="control-label col-sm-3" for="inputSuccess3">{{ form.habilitado.label_tag }}</label>
+                                    <div class="col-sm-6">  
+                                         {{ form.habilitado}}              
+                                    </div>
+                                </div>                               
+                        </div>
+                        <div class="pull-right">
+                            <div class="btn-group">
+                            <button type="submit" class="btn btn-lg btn-info"><i class="fa fa-floppy-o"></i></button>
+                        </div>
+                        </div>  
+                    </form>  
+                      </div>
+                    </div><!--/.row-->
+            </div><!-- /.box body -->
+          </div><!-- /.box info -->
+          </div><!--col-->
+        </div><!-- /.row -->
+    </section><!-- /.content -->
+  </div><!-- /.content-wrapper -->
+  
+{% endblock content %}

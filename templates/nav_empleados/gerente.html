@@ -1,0 +1,83 @@
+              <li class="treeview">
+                <a href="#">
+                  <i class="fa fa-child"></i> <span>Clientes</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                  <li class="active"><a href="{% url 'clientes_app:lista_clientes' %}"><i class="fa fa-check-square"></i> Lista</a></li>
+                  <li><a href="{% url 'clientes_app:crear_cliente' %}"><i class="fa fa-save"></i><small class="label pull-right bg-green">Nuevo</small>Nuevo</a></li>
+                </ul>
+              </li>
+
+              <li class="treeview">
+                <a href="#">
+                  <i class="fa fa-users"></i> <span>Proveedores</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                  <li class="active"><a href="{% url 'proveedor:lista_proveedores'%}"><i class="fa fa-check-square"></i> Lista</a></li>
+                  <li><a href="{% url 'proveedor:crear_proveedor' %}"><i class="fa fa-save"></i><small class="label pull-right bg-green">Nuevo</small>Nuevo</a></li>
+                </ul>
+              </li>
+              <li class="treeview">
+                <a href="#">
+                  <i class="fa fa-child"></i> <span>Personal</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                  <li class="active"><a href="{% url 'empleados:lista_empleados' %}"><i class="fa fa-check-square"></i> Lista</a></li>
+                  <li><a href="{% url 'empleados:crear_empleado' %}"><i class="fa fa-save"></i><small class="label pull-right bg-green">Nuevo</small>Nuevo</a></li>
+                </ul>
+              </li>
+
+              <li class="treeview">
+                <a href="#">
+                  <i class="fa fa-motorcycle"></i>
+                  <span>Productos</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="{% url 'productos:lista_productos' %}"><i class="fa fa fa-check-square"></i> Lista</a></li>                
+                  <li><a href="{% url 'productos:crear_productos'%}"><i class="fa fa-save"></i><small class="label pull-right bg-green">Nuevo</small>Nuevo</a></li>               
+                </ul>
+              </li>
+
+       
+              <li class="treeview">
+                <a href="#">
+                  <i class="fa fa-wrench"></i>
+                  <span>Asistencia</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="#"><i class="fa fa-circle-o"></i> Listado de Compras</a></li>
+                  <li><a href="#"><i class="fa fa-circle-o"></i> Realizar Compras</a></li>
+                  <li><a href="#"><i class="fa fa-circle-o"></i> Reportes Compras</a></li>                
+                </ul>
+              </li>
+
+              <li class="treeview">
+                <a href="#">
+                  <i class="fa fa-tags"></i>
+                  <span>Propaganda</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="{%url 'propagandas:lista_propagandas'%}"><i class="fa fa-circle-o"></i> Listado de Propagandas</a></li>
+                  <li><a href="{% url 'propagandas:crear_propaganda' %}"><i class="fa fa-circle-o"></i> Crear Propaganda</a></li>                
+                </ul>
+              </li>
+
+              <li class="treeview">
+                <a href="#">
+                  <i class="fa fa-laptop"></i>
+                  <span>Ventas</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                <li>
+                  <a href="{% url 'ventas:lista_ventas' %}"><i class="fa fa-circle-o"></i> Lista Ventas</a></li> 
+                  <li><a href="{% url 'ventas:venta_productos'%}"><i class="fa fa-circle-o"></i> Realizar Venta</a></li>
+                  <li><a href="#"><i class="fa fa-circle-o"></i> Consultar Venta</a></li>
+                  <li><a href="#"><i class="fa fa-circle-o"></i> Reporte Venta</a></li>
+                 
+                </ul>
+              </li>
+

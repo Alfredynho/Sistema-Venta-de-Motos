@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <style >
+        @page {
+            size: landscape;
+            @frame header_frame{
+                -pdf-frame-content: headerContent;
+                left: 5pt;
+                top: 10pt;
+                height: 100pt;
+                }
+
+            @frame content_frame {
+                    left: 40pt; width: 760pt; top: 90pt; height: 460pt;
+            }
+
+            @frame footer {
+                -pdf-frame-content: footerContent;
+                bottom: 1cm;
+                margin-left: 1cm;
+                margin-right: 1cm;
+                height: 0cm;
+                }
+        }
+    </style>
+</head>
+<body>
+
+<div id="headerContent">
+    </br><center> <h2>REPORTE DE EMPLEADOS</h2></center>
+    <center> <h3>USMOTOS</h3></center>
+</div>
+
+<div id="footerContent">
+    Página: <pdf:pagenumber> de <pdf:pagecount>
+</div>
+
+<br>
+<table style="border:2px solid black;border-collapse:collapse;">
+    <tr>
+        <th style="border:2px solid black; padding: 2px;">Nro</th>
+        <th style="border:2px solid black; padding: 2px;">Cedula</th>
+        <th style="border:2px solid black; padding: 2px;">Nombre</th>
+        <th style="border:2px solid black; padding: 2px;">Cargo</th>        
+        <th style="border:2px solid black; padding: 2px;">Celular</th>
+        <th style="border:2px solid black; padding: 2px;">Habilitado</th>  
+
+
+    </tr>
+     {% for empleado in empleados %}
+            
+        <tr>
+        <td width= 40 style="border:2px solid black; padding: 3px;">{{ forloop.counter }}</td>
+         <td width= 80 style="border:2px solid black; padding: 3px;"><center>{{ empleado.cedula }}</center></td>
+         <td width= 120 style="border:2px solid black; padding: 3px;"><center>{{ empleado.empleado.first_name |capfirst }} {{ empleado.empleado.last_name |capfirst }}</center></td>
+         <td width=140 style="border:2px solid black; padding: 3px;"><center>{{ empleado.tipo}}</center></td>
+         <td width= 80 style="border:2px solid black; padding: 3px;"><center>{{ empleado.celular }}</center></td>
+         {% if empleado.habilitado == True %}
+         	<td width= 70 style="border:2px solid black; padding: 3px;"><center>Si</center></td>
+         {% else %}
+         	<td width= 70 style="border:2px solid black; padding: 3px;"><center>No</center></td>
+         {% endif %}
+        </tr>         
+              
+    {% endfor %} 
+    <td colspan="6" width= 70 style="border:2px solid black; padding: 3px;"><center>REPORTE EMPLEADOS USMOTOS</center></td>
+  
+
+</table>
+
+<br />
+
+</body>
+</html>
+

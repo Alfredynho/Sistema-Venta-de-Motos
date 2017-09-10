@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}Inventario{% endblock title %}
+{% block content %}
+    <div class="wrapper"> 
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>            
+            Inventario Productos {{ sucursal.nombre }}
+          </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <div class="col-xs-12">
+
+                <div class="box box-primary">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">
+                      <a href="#" class="btn btn-success">
+                      Nuevo
+                      </a>
+                    </h3>
+                    {% if user.empleado.tipo == "Gerente" %}
+                      <a  class="btn btn-primary pull-right" href="/productos/reporte">imprimir</a>
+                    {% endif %}
+                    <div class="box-tools pull-right">
+                      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    </div><!-- /.box-tools -->
+                  </div><!-- /.box-header -->
+                  <div class="box-body">
+
+              <table id="example1" class="table table-bordered table-striped">
+
+                        <thead>
+                            <tr>
+                             <th>N°</th>                                                     
+                              <th>Nombre</th> 
+                              <th>Tipo</th>                              
+                              <th>Marca</th> 
+                              <th>Precio Venta</th> 
+                              <th>Proveedor</th>
+                              <th>Color</th>
+                              <th>Stock</th>
+                              <th>Habilitado</th>
+                              <th><center>Acciones</center></th>
+                           </tr>
+                        </thead>
+                      <tbody> 
+                      {% for producto in sucursal_productos %}          
+
+                          <tr> 
+                              <td>{{ forloop.counter}}</td>                             
+                              <td>{{ producto.producto.nombre }} </td> 
+                              <td>{{ producto.producto.tipo }}</td>                              
+                              <td>{{ producto.producto.marca }}</td>
+                              <td>{{ producto.producto.precio_venta }}</td>
+                              <td><b style="color:blue;">{{ producto.producto.proveedor| capfirst }}</b></td>   
+                              <td>{{ producto.color }}</td>
+                              <td>{{ producto.cantidad }}</td>
+                              {% if producto.habilitado == True %}
+                                  <td>Si</td>
+                              {% else %}
+                                  <td>No</td>
+                              {% endif %}
+                              
+                              <td class="text-right">
+                                  <center>
+                                  <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                  <a href="#" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    {% if user.empleado.tipo == 'Gerente' %}
+                                        <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a> </center>
+                                    {% endif %}
+                              </td>
+                          </tr>
+                      {% endfor %}
+                          
+                          </tbody>
+                </table>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+      <footer class="main-footer">
+{% endblock content %}
+
+
+
+
+
+

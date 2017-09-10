@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+	<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>{% block title %}{% endblock title %}</title>
+	</head>
+
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	
+	<!-- include css -->
+	{% include 'style.html' %}
+
+	{% block css %}
+		<!-- css extras -->
+	{% endblock css %}
+
+ 	<body class="hold-transition skin-blue sidebar-mini">
+
+	<!-- include navegacion sistema -->
+	{% include "nav.html" %}
+
+	{% block content %}
+		<!-- Contenido de la vista -->
+	{% endblock content %}
+
+	<!-- include footer -->
+	{% include "footer.html" %}
+
+	<!-- include scripts -->
+	{% include 'javascript.html' %}
+
+	{% block extrajs %}
+		<!-- scripts extras -->
+	{% endblock extrajs %}
+
+</html>
